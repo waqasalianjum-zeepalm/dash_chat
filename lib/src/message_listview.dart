@@ -239,14 +239,18 @@ class _MessageListViewState extends State<MessageListView> {
                                                         title: Text(
                                                             "Copy to clipboard"),
                                                         onTap: () {
-                                                          Clipboard.setData(
-                                                              ClipboardData(
-                                                                  text: widget
-                                                                      .messages[
-                                                                          i]
-                                                                      .text));
-                                                          Navigator.pop(
-                                                              context);
+                                                          if (widget.messages[i]
+                                                                  .text !=
+                                                              null) {
+                                                            Clipboard.setData(
+                                                                ClipboardData(
+                                                                    text: widget
+                                                                        .messages[
+                                                                            i]
+                                                                        .text!));
+                                                            Navigator.pop(
+                                                                context);
+                                                          }
                                                         },
                                                       )
                                                     ],
