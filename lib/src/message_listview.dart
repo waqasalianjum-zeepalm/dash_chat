@@ -13,7 +13,7 @@ class MessageListView extends StatefulWidget {
   final Function(ChatMessage)? onLongPressMessage;
   final bool inverted;
   final Widget Function(ChatUser)? avatarBuilder;
-  final Widget Function(ChatMessage)? messageBuilder;
+  final Widget? Function(ChatMessage)? messageBuilder;
   final Widget Function(String?, [ChatMessage])? messageTextBuilder;
   final Widget Function(String?, [ChatMessage])? messageImageBuilder;
   final Widget Function(String, [ChatMessage])? messageTimeBuilder;
@@ -259,8 +259,49 @@ class _MessageListViewState extends State<MessageListView> {
                                       }
                                     },
                                     child: widget.messageBuilder != null
-                                        ? widget
-                                            .messageBuilder!(widget.messages[i])
+                                        ? widget.messageBuilder!(
+                                                    widget.messages[i]) !=
+                                                null
+                                            ? widget.messageBuilder!(
+                                                widget.messages[i])
+                                            : Align(
+                                                alignment: widget.messages[i]
+                                                            .user.uid ==
+                                                        widget.user.uid
+                                                    ? AlignmentDirectional
+                                                        .centerEnd
+                                                    : AlignmentDirectional
+                                                        .centerStart,
+                                                child: MessageContainer(
+                                                  messagePadding:
+                                                      widget.messagePadding,
+                                                  constraints: constraints,
+                                                  isUser: widget.messages[i]
+                                                          .user.uid ==
+                                                      widget.user.uid,
+                                                  message: widget.messages[i],
+                                                  timeFormat: widget.timeFormat,
+                                                  messageImageBuilder: widget
+                                                      .messageImageBuilder,
+                                                  messageTextBuilder:
+                                                      widget.messageTextBuilder,
+                                                  messageTimeBuilder:
+                                                      widget.messageTimeBuilder,
+                                                  messageContainerDecoration: widget
+                                                      .messageContainerDecoration,
+                                                  parsePatterns:
+                                                      widget.parsePatterns,
+                                                  buttons: widget
+                                                      .messages[i].buttons,
+                                                  messageButtonsBuilder: widget
+                                                      .messageButtonsBuilder,
+                                                  textBeforeImage:
+                                                      widget.textBeforeImage,
+                                                  messageDecorationBuilder: widget
+                                                      .messageDecorationBuilder,
+                                                ),
+                                              )
+                                        
                                         : Align(
                                             alignment: widget
                                                         .messages[i].user.uid ==
