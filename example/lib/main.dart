@@ -121,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
             } else {
               List<DocumentSnapshot> items = snapshot.data!.docs;
               var messages =
-                  items.map((i) => ChatMessage.fromJson(i.data()!)).toList();
+                  items.map((i) => ChatMessage.fromJson(i.data()! as Map<String, dynamic>)).toList();
               return DashChat(
                 key: _chatViewKey,
                 inverted: false,
@@ -190,7 +190,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     icon: Icon(Icons.photo),
                     onPressed: () async {
                       final picker = ImagePicker();
-                      PickedFile? result = await picker.getImage(
+                      XFile? result = await picker.pickImage(
                         source: ImageSource.gallery,
                         imageQuality: 80,
                         maxHeight: 400,
