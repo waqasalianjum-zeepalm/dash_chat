@@ -1,3 +1,7 @@
+## [1.1.17]
+- Make Message builder widget null and in case of null it show default message container and updated packages.
+
+
 ## [1.1.16]
 - Pubspec updated to work with new UUID package [#172] https://github.com/fayeed/dash_chat/pull/172 by [@GonzaloAldana](https://github.com/GonzaloAldana)
 
